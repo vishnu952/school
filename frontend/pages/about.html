@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/index.css">
+    <script src="/static/index.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#eff6ff', 600: '#2563eb' },
+                        'vivid-violet': '#7c3aed',
+                        'vivid-teal': '#0d9488',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans leading-relaxed">
+    <header class="header  px-6 sm:px-12">
+        <div class="logo-area">
+            <div class="school-logo">
+                <img id="logo" src="/static/school_logo.jpeg" alt="Srividyaranya Gurukulam Logo">
+            </div>
+            <div class="school-title">
+                <h2>Srividyaranya Gurukulam</h2>
+                <p>── School of Excellence <i class="fa-solid fa-graduation-cap text-sm"> ──</i></p>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-links">
+            <!-- <li class="menu-close-container">
+                <button class="close-btn" id="close-menu" aria-label="Close Menu">&times;</button> 
+            </li> -->
+            <li><a href="index.html">Home</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <button class="menu-btn" id="menu-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+    <section class="max-w-4xl mx-auto px-6 pt-16 pb-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">About Us</h1>
+        <p class="text-lg text-slate-600">
+            Dedicated to excellence in education, we strive to foster an environment where curiosity thrives and students are empowered to shape the future.
+        </p>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 transition-transform hover:-translate-y-1 hover:shadow-md">
+                <div class="w-12 h-12 bg-brand-50 rounded-2xl flex items-center justify-center text-brand-600 mb-6">
+                    <i class="fa-solid fa-bullseye text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-4">Our Mission</h2>
+                <p class="text-slate-600">
+                    To provide a holistic and inclusive learning environment that inspires intellectual curiosity, encourages creativity, and develops ethical leaders who contribute meaningfully to the global community.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 transition-transform hover:-translate-y-1 hover:shadow-md">
+                <div class="w-12 h-12 bg-vivid-violet/10 rounded-2xl flex items-center justify-center text-vivid-violet mb-6">
+                    <i class="fa-solid fa-eye text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-4">Our Vision</h2>
+                <p class="text-slate-600">
+                    To be a lighthouse of academic excellence, recognized for innovation in teaching and a commitment to nurturing well-rounded individuals ready to navigate and excel in a rapidly evolving world.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-6 py-12">
+        <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100">
+            <h2 class="text-2xl font-bold mb-6">Why Choose Us?</h2>
+            <div class="space-y-4 text-slate-600">
+                <p>Founded on principles of integrity and dedication, our institution has been a cornerstone of the local community for over two decades.</p>
+                <p>We believe that education is more than just textbooks; it is about building character, resilience, and compassion. Our faculty are experts in their fields, bringing passion to every classroom session and ensuring every student receives personalized attention.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="max-w-6xl mx-auto px-6 py-12 text-center text-slate-400 text-sm">
+                <p>&copy;  2025 Sri Vidyaranya Gurukulam. All rights reserved.</p>
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-dotenv
+pymongo
+motor
+python-jose[cryptography]
+passlib[bcrypt]
+sqlalchemy
+jinja2
+python-multipart
+dnspython
+pydantic
+itsdangerous
+certifi

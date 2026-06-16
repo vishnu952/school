@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Srividyaranya Gurukulam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="/static/index.css" rel="stylesheet">
+    <script src="/static/index.js"></script>
+</head>
+<body class="bg-slate-250 text-white min-h-screen">
+<!-- <body class="bg-slate-50 text-slate-800 font-sans leading-relaxed"></body> -->
+    <!-- Header -->
+    <header class="header  px-6 sm:px-12">
+        <div class="logo-area">
+            <div class="school-logo">
+                <img id="logo" src="/static/school_logo.jpeg" alt="Srividyaranya Gurukulam Logo">
+            </div>
+            <div class="school-title">
+                <h2>Srividyaranya Gurukulam</h2>
+                <p>── School of Excellence <i class="fa-solid fa-graduation-cap text-sm"> ──</i></p>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-links">
+            <!-- <li class="menu-close-container">
+                <button class="close-btn" id="close-menu" aria-label="Close Menu">&times;</button> 
+            </li> -->
+            <li><a href="index.html">Home</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <button class="menu-btn" id="menu-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center mb-20">
+            <h2 class="text-4xl md:text-6xl font-serif font-bold mb-6 text-white">Captured Moments</h2>
+            <div class="w-24 h-1 bg-amber-500 mx-auto rounded-full"></div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {% for item in gallery_items %}
+            <div class="group bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/50 transition-all duration-500 shadow-2xl">
+                <div class="relative aspect-[4/3] overflow-hidden">
+                    <img src="{{ item.image_url }}" alt="{{ item.occasion }}" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                <div class="p-8">
+                    <span class="inline-block px-3 py-1 rounded-full bg-amber-500/10 text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-4">{{ item.date }}</span>
+                    <h3 class="text-2xl font-serif font-bold text-white group-hover:text-amber-500 transition-colors">{{ item.occasion }}</h3>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-span-full py-32 text-center">
+                <i class="fa-solid fa-camera-retro text-6xl text-slate-800 mb-6"></i>
+                <p class="text-slate-500 font-medium">The gallery is currently empty. Please check back later.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer class="py-12 text-center text-slate-600 border-t border-slate-900 mt-20">
+        <p class="text-xs uppercase tracking-widest">&copy; 2024 Srividyaranya Gurukulam. Wisdom in Tradition.</p>
+    </footer>
+</body>
+</html>

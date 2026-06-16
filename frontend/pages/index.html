@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srividyaranya Gurukulam | School of Excellence</title>
+    <!-- Google Fonts: Cormorant Garamond for elegant headings, Inter for clean readable body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/index.css?v=1.0.1">
+    <script src="/static/index.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   
+</head>
+<body>
+    <header class="header px-6 sm:px-12">
+        <div class="logo-area">
+            <div class="school-logo">
+                <img id="logo" src="/static/school_logo.jpeg" alt="Srividyaranya Gurukulam Logo">
+            </div>
+            <div class="school-title">
+                <h2>Srividyaranya Gurukulam</h2>
+                <p>── School of Excellence <i class="fa-solid fa-graduation-cap text-sm"> ──</i></p>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-links">
+            <!-- <li class="menu-close-container">
+                <button class="close-btn" id="close-menu" aria-label="Close Menu">&times;</button> 
+            </li> -->
+            <li><a href="/">Home</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <button class="menu-btn" id="menu-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</header>
+<section class="hero">
+    <!-- Premium Overlay for better text readability over background images -->
+    <div class="hero-overlay"></div>
+
+    {% if home_video.video_url %}
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="{{ home_video.video_url }}" type="video/mp4">
+    </video>
+    {% endif %}
+
+
+    <!-- HERO CONTENT -->
+    <div class="hero-content">
+        <h1>Character Excellence</h1>
+        <p class="hero-quote">
+            “School is where young minds are nurtured, values are instilled, and strong personalities are shaped for a successful future.”
+        </p>
+
+        <div class="hero-buttons">
+            <a href="admissions.html" class="btn-solid">Join Now</a>
+            <a href="contact.html" class="btn-outline">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+<section class="story" id="story">
+<h2 class="story-title">Student Life</h2>
+
+<svg class="story-path"
+viewBox="0 0 260 1670"
+     preserveAspectRatio="none">
+
+<path
+id="mainPath"
+d="
+M130 0
+L130 306
+Q130 334 150 334
+L190 334
+Q210 334 210 362
+L210 696
+Q210 724 190 724
+L70 724
+Q50 724 50 752
+L50 1141
+Q50 1169 70 1169
+L190 1169
+Q210 1169 210 1197
+L210 1642
+Q210 1670 190 1670
+L130 1670
+"
+fill="none"
+stroke="#111"
+stroke-width="10"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+</svg>
+
+<div class="arrow" id="arrow">⬆︎</div>
+
+<div class="item left">
+    <div class="content card bg-transparent border-none backdrop-blur-lg">
+        <center><h2>Academic Excellence</h2></center>
+        <p>Comprehensive CBSE and State Board education focused on strong fundamentals, critical thinking, and outstanding academic achievement.</p>
+    </div>
+    <div class="image card" style="background-image: url('{{ student_life.academic_img or '' }}'); background-size: cover; background-position: center;"></div>
+</div>
+
+<div class="item right">
+    <div class="content card  bg-transparent border-none backdrop-blur-lg">
+        <center><h2>Sports Excellence</h2></center>
+        <p>Spacious playgrounds and structured sports programs promoting fitness, teamwork, discipline, and overall physical development.</p>
+    </div>
+    <div class="image card" style="background-image: url('{{ student_life.sports_img or '' }}'); background-size: cover; background-position: center;"></div>
+</div>
+
+<div class="item left">
+    <div class="content card  bg-transparent border-none backdrop-blur-lg">
+        <center><h2>Arts & Creativity</h2></center>
+        <p>Interactive teaching methods, hands-on activities, and innovative learning experiences that inspire curiosity and lifelong learning.</p>
+    </div>
+    <div class="image card" style="background-image: url('{{ student_life.arts_img or '' }}'); background-size: cover; background-position: center;"></div>
+</div>
+
+<div class="item right">
+    <div class="content card  bg-transparent border-none backdrop-blur-lg">
+        <center><h2>Digital Learning</h2></center>
+        <p>Technology-enabled classrooms and smart learning tools enhance engagement, understanding, and future-ready skills from an early age.</p>
+    </div>
+    <div class="image card" style="background-image: url('{{ student_life.digital_img or '' }}'); background-size: cover; background-position: center;"></div>
+</div>
+
+<div class="footer-logo">
+    <img src="/static/school_logo.jpeg" style="border-radius: 50%; z-index: 20;" alt="Srividyaranya Gurukulam Logo">
+</div>
+</section>
+
+<!-- academic  section -->
+  <section id="academics-section" class="px-6 sm:px-12 py-16 bg-white border-b border-slate-100">
+                <div class="max-w-5xl mx-auto space-y-12">
+                    
+                    <div class="text-center max-w-xl mx-auto">
+                        <p class="text-brand-600 font-bold uppercase tracking-widest text-[10px] mb-1">Academic Pillars</p>
+                        <h2 class="font-syne text-2xl sm:text-3xl font-extrabold text-slate-950">Academics Curriculum</h2>
+                        <p class="text-slate-500 text-xs mt-1">Rigorous scientific and linguistic ecosystems modeled for global standards.</p>
+                    </div>
+
+                    <!-- 5 Major Sub-blocks inside Academics -->
+                    <div class="space-y-12">
+                        
+                        <!-- BLOCK A: CURRICULUM -->
+                        <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200/80">
+                            <div class="grid md:grid-cols-12 gap-6 items-center">
+                                <div class="md:col-span-5 space-y-4">
+                                    <span class="px-2.5 py-1 rounded bg-brand-100 text-brand-700 font-bold text-[9px] uppercase tracking-wider">Standard of Education</span>
+                                    <h3 class="font-syne text-xl font-extrabold text-slate-950">Primary & Secondary Curriculum</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">
+                                        Sri Vidyaranya Gurukulam employs a balanced, nationally accredited academic plan. We focus on active mathematical application, cognitive literature studies, and structured ethical training classes to create well-rounded citizens.
+                                    </p>
+                                    <div class="flex items-center gap-2 pt-2">
+                                        <span class="text-[10px] font-bold text-brand-600 uppercase tracking-widest"><i class="fa-solid fa-book-open mr-1.5"></i> Comprehensive Text Core</span>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-7">
+                                    <div class="aspect-video rounded-2xl overflow-hidden shadow border border-slate-200">
+                                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80" 
+                                             alt="School Curriculum Session" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BLOCK B: IIT & COMPETITIVE EXAMS -->
+                        <!-- -->
+                        <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200/80">
+                            <div class="grid md:grid-cols-12 gap-6 items-center md:flex-row-reverse">
+                                <div class="md:col-span-7 order-last md:order-first">
+                                    <div class="aspect-video rounded-2xl overflow-hidden shadow border border-slate-200">
+                                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80" 
+                                             alt="Students practicing entrance questions" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <div class="md:col-span-5 space-y-4">
+                                    <span class="px-2.5 py-1 rounded bg-vivid-violet/10 text-vivid-violet font-bold text-[9px] uppercase tracking-wider">Advanced Foundation</span>
+                                    <h3 class="font-syne text-xl font-extrabold text-slate-950">IIT-JEE, NEET & Olympiads Preparation</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">
+                                        Our competitive cell delivers deep-concept foundation guidance. We utilize logic matrices, weekly performance evaluations, and high-quality study schedules to prepare students for national level tests.
+                                    </p>
+                                    <div class="flex items-center gap-2 pt-2">
+                                        <span class="text-[10px] font-bold text-vivid-violet uppercase tracking-widest"><i class="fa-solid fa-circle-nodes mr-1.5"></i> Concept Mastery Pathways</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BLOCK C: DIGITAL LEARNING -->
+                        <!-- -->
+                        <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200/80">
+                            <div class="grid md:grid-cols-12 gap-6 items-center">
+                                <div class="md:col-span-5 space-y-4">
+                                    <span class="px-2.5 py-1 rounded bg-vivid-teal/10 text-vivid-teal font-bold text-[9px] uppercase tracking-wider">Smart Tech Core</span>
+                                    <h3 class="font-syne text-xl font-extrabold text-slate-950">Digital Learning Systems</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">
+                                        Equipped with digital screens, flat smartboards, and centralized study networks. Our tech infrastructure translates abstract physics, algebra, and spatial models into direct, interactive lessons.
+                                    </p>
+                                    <div class="flex items-center gap-2 pt-2">
+                                        <span class="text-[10px] font-bold text-vivid-teal uppercase tracking-widest"><i class="fa-solid fa-tablet-button mr-1.5"></i> Interactive Displays Installed</span>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-7">
+                                    <div class="aspect-video rounded-2xl overflow-hidden shadow border border-slate-200">
+                                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" 
+                                             alt="Smart Classroom Digital Tablet usage" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BLOCK D: LANGUAGE DEVELOPMENT -->
+                        <!-- -->
+                        <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200/80">
+                            <div class="grid md:grid-cols-12 gap-6 items-center md:flex-row-reverse">
+                                <div class="md:col-span-7 order-last md:order-first">
+                                    <div class="aspect-video rounded-2xl overflow-hidden shadow border border-slate-200">
+                                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=80" 
+                                             alt="Language debate & communication clinic" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                                <div class="md:col-span-5 space-y-4">
+                                    <span class="px-2.5 py-1 rounded bg-vivid-gold/10 text-vivid-gold font-bold text-[9px] uppercase tracking-wider">Communication Clinic</span>
+                                    <h3 class="font-syne text-xl font-extrabold text-slate-950">Linguistic & Speech Training</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">
+                                        Fostering expressive dialogue and phonetic capabilities. We run intensive stage speaking groups, structural spelling challenges, and active spelling-bees to polish student debate profiles.
+                                    </p>
+                                    <div class="flex items-center gap-2 pt-2">
+                                        <span class="text-[10px] font-bold text-vivid-gold uppercase tracking-widest"><i class="fa-solid fa-comments mr-1.5"></i> Public Debate Training</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BLOCK E: SCIENCE LAB -->
+                        <!-- -->
+                        <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200/80">
+                            <div class="grid md:grid-cols-12 gap-6 items-center">
+                                <div class="md:col-span-5 space-y-4">
+                                    <span class="px-2.5 py-1 rounded bg-brand-100 text-brand-700 font-bold text-[9px] uppercase tracking-wider">Scientific Experiments</span>
+                                    <h3 class="font-syne text-xl font-extrabold text-slate-950">Science & Physics Laboratories</h3>
+                                    <p class="text-slate-600 text-xs leading-relaxed">
+                                        Our physical chemistry and biological workstations support individual student experimentation. Hands-on learning ensures safe interactions, structural lab routines, and detailed scientific evaluations.
+                                    </p>
+                                    <div class="flex items-center gap-2 pt-2">
+                                        <span class="text-[10px] font-bold text-brand-600 uppercase tracking-widest"><i class="fa-solid fa-flask mr-1.5"></i> Complete Safety Standards</span>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-7">
+                                    <div class="aspect-video rounded-2xl overflow-hidden shadow border border-slate-200">
+                                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" 
+                                             alt="High Precision Science Lab" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+        
+            
+            <!-- 5. PRINCIPAL'S MESSAGE -->
+            <section class="px-6 sm:px-12 py-16 bg-slate-50/50 border-b border-slate-100">
+                <div class="p-6 sm:p-10 rounded-3xl bg-white border border-slate-200/80 shadow-md">
+                    <div class="grid md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-8 space-y-4">
+                            <span class="px-2.5 py-1 rounded bg-brand-50 text-brand-600 font-bold text-[9px] uppercase tracking-wider">Leadership Message</span>
+                            <h3 class="font-syne text-xl sm:text-2xl font-extrabold text-slate-950">Principal's Address</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm italic leading-relaxed">
+                                "Welcome to our close-knit academic home. We design our classroom routines to ensure text study is paired closely with athletics, physical testing, and ethical leadership development. We prepare young minds for real global challenges."
+                            </p>
+                            <div>
+                                <h5 class="text-xs font-bold text-slate-900">Dr. Elizabeth Vance, Ph.D.</h5>
+                                <p class="text-slate-400 text-[9px] font-semibold uppercase tracking-wider">Campus Principal & Chairwoman</p>
+                            </div>
+                        </div>
+                        <div class="md:col-span-4 flex justify-center">
+                            <div class="relative w-32 h-40 bg-slate-100 rounded-2xl overflow-hidden border border-slate-200 p-1">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" 
+                                     alt="Dr. Elizabeth Vance Portrait" 
+                                     class="w-full h-full object-cover rounded-xl"
+                                     onerror="this.src='https://placehold.co/300x400/e2e8f0/1e293b?text=Principal'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. VISIT CAMPUS MAP VIEW -->
+            <section class="px-6 sm:px-12 py-16 bg-white border-b border-slate-100">
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <p class="text-vivid-gold font-bold uppercase tracking-widest text-[10px] mb-1">Locate Campus</p>
+                    <h2 class="font-syne text-2xl sm:text-3xl font-extrabold text-slate-950">Visit Campus</h2>
+                </div>
+
+                <div class="relative rounded-3xl overflow-hidden border border-slate-200 shadow-lg h-72">
+                    <iframe 
+                        src="https://www.google.com/maps?q=13.8184633,78.7962882&z=17&t=k&output=embed"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade" 
+                        class="w-full h-full opacity-80">
+                    </iframe>
+                    
+                    <div class="absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-brand-600 flex items-center justify-center text-white shadow-xl shadow-brand-600/40 border-2 border-white animate-bounce">
+                            <i class="fa-solid fa-school text-xs"></i>
+                        </div>
+                        <span class="px-2 py-0.5 rounded bg-slate-950/85 text-white font-bold text-[8px] uppercase tracking-wider mt-1.5 shadow">Sri Vidyaranya Gurukulam</span>
+                    </div>
+
+                    <div class="absolute bottom-4 left-4 right-4 md:right-auto md:max-w-sm p-4 rounded-xl bg-white/95 backdrop-blur border border-slate-200/80 shadow-md">
+                        <h4 class="text-xs font-bold text-slate-950 mb-0.5">SriVidyaranya Gurukulam</h4>
+                        <p class="text-slate-500 text-[10px] mb-2.5">opp to Sri Chowdeswari Devi Temple, K.Batavaripalli, Kalakada, Andhra Pradesh</p>
+                        <div class="flex gap-2">
+                            <a href="https://maps.app.goo.gl/Voypz26JaSXYBBck6" target="_blank" class="px-3 py-1.5 rounded-lg bg-blue-400 text-white text-[10px] font-bold hover:bg-blue-700 transition-colors flex items-center gap-1">
+                                <i class="fa-solid fa-location-crosshairs"></i> Directions
+                            </a>
+                            <a href="tel:+12345678" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 text-[10px] font-semibold hover:bg-slate-200 transition-colors">
+                                Call Desk
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. ADMISSIONS PORTAL & FEEDBACK -->
+            <section id="admission-section" class="px-6 sm:px-12 py-16 bg-slate-50/50">
+                <div class="grid lg:grid-cols-12 gap-8">
+                    
+                    <!-- Left: Admission Portal -->
+                    <div id="enrollment-portal" class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-md space-y-6">
+                        <div>
+                            <p class="text-brand-600 font-bold uppercase tracking-widest text-[9px] mb-1">Registrar Office</p>
+                            <h3 class="font-syne text-xl font-extrabold text-slate-950">Admission Portal</h3>
+                            <p class="text-slate-500 text-xs">Register your details below to save space in our upcoming semester orientation queue.</p>
+                        </div>
+
+                        <form id="admissionForm" class="space-y-4 was-validated">
+                            <div>
+                                <label class="block text-slate-600 text-[9px] font-bold uppercase tracking-wider mb-1">Student Name</label>
+                                <input type="text" name="user_name" placeholder="e.g. Liam Vance" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:outline-none focus:border-brand-600 transition-colors" required>
+                            </div>
+                            <div>
+                                <label class="block text-slate-600 text-[9px] font-bold uppercase tracking-wider mb-1">Parent Email</label>
+                                <input type="email" name="email" placeholder="parent@example.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:outline-none focus:border-brand-600 transition-colors" required>
+                            </div>
+                            <div>
+                                <label class="block text-slate-600 text-[9px] font-bold uppercase tracking-wider mb-1">Phone</label>
+                                <div class="flex gap-2">
+                                    <input type="tel" id="admission_phone" name="phone" placeholder="+91 9876543210" class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:outline-none focus:border-brand-600 transition-colors" required>
+                                    <!-- <button type="button" onclick="sendAdmissionOTP()" class="px-3 py-1 bg-slate-200 text-slate-700 text-[9px] font-bold rounded-lg hover:bg-slate-300">Verify</button> -->
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-slate-600 text-[9px] font-bold uppercase tracking-wider mb-1">Home Address</label>
+                                <input type="text" name="address"placeholder="Street, City, Zip Code" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:outline-none focus:border-brand-600 transition-colors" required>
+                            </div>
+                            <!-- <div id="otp-container" class="hidden">
+                                <label class="block text-orange-600 text-[9px] font-bold uppercase tracking-wider mb-1">Verification Code (OTP)</label>
+                                <input type="text" name="otp" placeholder="Enter 6-digit code" class="w-full px-3 py-2 bg-orange-50 border border-orange-200 rounded-lg text-slate-800 text-xs focus:outline-none focus:border-brand-600 transition-colors">
+                            </div> -->
+                            <button type="submit" class="w-full py-2.5 rounded-lg bg-blue-400 text-white font-bold text-xs shadow hover:bg-blue-600 transition-colors flex items-center justify-center gap-1.5">
+                                Join Admission Queue <i class="fa-solid fa-paper-plane text-[9px]"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right: Feedback Portal -->
+                    <div id="feedback-section" class="lg:col-span-6 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-md space-y-6">
+                        <div>
+                            <p class="text-vivid-teal font-bold uppercase tracking-widest text-[9px] mb-1">Public Desk</p>
+                            <h3 class="font-syne text-xl font-extrabold text-slate-950">Feedback Section</h3>
+                            <p class="text-slate-500 text-xs">Help us refine campus programs by sharing detailed academic feedback or suggestions.</p>
+                        </div>
+
+                        <form id="feedbackForm" class="space-y-4 was-validated">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-slate-600 text-[9px] font-bold uppercase tracking-wider mb-1">Your Name</label>
+                                    <input type="text" name="user_name" placeholder="John Doe" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:outline-none focus:border-vivid-teal transition-colors" required>
+                                </div>
+                                <div>
+                                    <label class="block text-slate-600 text-[9px] font-bold uppercase tracking-wider mb-1">Your Email</label>
+                                    <input type="email" name="user_email" placeholder="john@example.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:outline-none focus:border-vivid-teal transition-colors" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-slate-600 text-[9px] font-bold uppercase tracking-wider mb-1">Feedback Message</label>
+                                <textarea name="user_message" rows="3" placeholder="Share your suggestions, review comments, or core ideas..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:outline-none focus:border-vivid-teal transition-colors" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-2.5 rounded-lg bg-blue-400 text-white font-bold text-xs shadow hover:bg-blue-600 transition-colors flex items-center justify-center gap-1.5">
+                                Submit Feedback <i class="fa-solid fa-paper-plane text-[9px]"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>       
+        <!-- ==================== TOAST NOTIFICATION MODAL SYSTEM ==================== -->
+        <div id="toast-notice" class="hidden fixed bottom-6 right-6 z-[999] p-4 rounded-xl bg-slate-900 text-white border border-slate-800 shadow-2xl items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-brand-600/20 text-brand-400 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-bell text-xs"></i>
+            </div>
+            <div>
+                <p id="toast-message" class="text-xs text-white font-semibold leading-tight">Notice message.</p>
+            </div>
+            <button onclick="dismissNotice()" class="text-slate-400 hover:text-white text-xs pl-2">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="bg-slate-950 text-slate-400 border-t border-slate-900 px-6 sm:px-12 py-10">
+            <div class="grid md:grid-cols-12 gap-6 items-center mb-6">
+                
+                <div class="md:col-span-5 space-y-2">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-brand-600 rounded-full flex items-center justify-center text-white shadow-md">
+                            <i class="fa-solid fa-graduation-cap text-sm"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-syne text-sm font-extrabold text-white">Sri Vidyaranya Gurukulam</span>
+                            <span class="text-[13px] text-slate-500 font-medium tracking-wide">── School of Excellence ──</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-500 text-[10px] max-w-xs leading-relaxed">
+                        Where Knowledge Meets Character, Excellence Becomes Tradition, and Every Student is Prepared to Lead, Innovate, and Succeed in a Competitive World—Empowered with Confidence, Integrity, Critical Thinking, and the Skills Required to Shape the Future.
+                    </p>
+                </div>
+                <div class="md:col-span-7 flex flex-wrap justify-between gap-4 text-[10px]">
+                    <div>
+                        <h5 class="text-white font-bold uppercase tracking-wider mb-2">Sections</h5>
+                        <ul class="space-y-1.5">
+                            <li><a href="index.html" class="hover:text-white transition-colors">Home Page</a></li>
+                            <li><a href="admissions.html" class="hover:text-white transition-colors">Admissions Portal</a></li>
+                            <li><a href="gallery.html" class="hover:text-white transition-colors">School Gallery</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="text-white font-bold uppercase tracking-wider mb-2">Campus Desk</h5>
+                        <ul class="space-y-1.5">
+                            <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                            <li><a href="contact.html" class="hover:text-white transition-colors">Contact Office</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-[1px] bg-slate-900/60 my-6"></div>
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-[9px] text-slate-600">
+                <p>&copy;  2025 Sri Vidyaranya Gurukulam. All rights reserved.</p>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-6 h-6 rounded-full bg-slate-900 flex items-center justify-center text-slate-500 hover:text-white hover:bg-brand-600 transition-colors" aria-label="Facebook"><i class="fa-brands fa-facebook-f text-[10px]"></i></a>
+                    <a href="#" class="w-6 h-6 rounded-full bg-slate-900 flex items-center justify-center text-slate-500 hover:text-white hover:bg-vivid-violet transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram text-[10px]"></i></a>
+                    <a href="#" class="w-6 h-6 rounded-full bg-slate-900 flex items-center justify-center text-slate-500 hover:text-white hover:bg-brand-600 transition-colors" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in text-[10px]"></i></a>
+                </div>
+                <p> Website developed by <i class="fa-brands fa-instagram text-[10px]"></i>vishnu._.life and team.</p>
+            </div>
+        </footer>
+    </div>
+
+<script >
+    // student life scroll story animation
+const story=document.getElementById('story');
+const arrow=document.getElementById('arrow');
+const items=[...document.querySelectorAll('.item')];
+
+function animate(){
+ const rect=story.getBoundingClientRect();
+ const vh=window.innerHeight;
+
+ const start=vh*0.2;
+ const end=story.offsetHeight-vh*0.3;
+
+ let progress=(-rect.top-start)/(end-start);
+ progress=Math.max(0,Math.min(1,progress));
+
+ const path =
+document.getElementById("mainPath");
+
+const totalLength =
+path.getTotalLength();
+
+const currentLength =
+progress * totalLength;
+
+const point =
+path.getPointAtLength(currentLength);
+
+const nextPoint =
+path.getPointAtLength(
+Math.min(currentLength+1,totalLength)
+);
+
+const angle =
+Math.atan2(
+nextPoint.y-point.y,
+nextPoint.x-point.x
+) * 180 / Math.PI;
+
+arrow.style.left =
+`calc(50% + ${point.x-130}px)`;
+
+arrow.style.top =
+`${270 + point.y}px`;
+
+arrow.style.transform =
+`translate(-50%,-50%) rotate(${angle+90}deg)`;
+
+ items.forEach((item,index)=>{
+   const r=item.getBoundingClientRect();
+   const center=r.top+r.height/2;
+   let p=1-Math.min(Math.abs(center-vh/2)/(vh/2),1);
+
+   const content=item.querySelector('.content');
+   const image=item.querySelector('.image');
+   const move=(1-p)*220;
+   
+
+   if(item.classList.contains('left')){
+      content.style.transform=`translateX(${-move}px)`;
+      image.style.transform=`translateX(${move}px)`;
+   }else{
+      content.style.transform=`translateX(${move}px)`;
+      image.style.transform=`translateX(${-move}px)`;
+   }
+ });
+ requestAnimationFrame(animate);
+}
+animate();
+
+// AJAX Form Handling logic
+async function handleAjaxSubmit(event, url) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+        const result = await response.json().catch(() => ({ notification: "Unexpected response from server." }));
+        
+        if (result.notification) {
+            showNotice(result.notification);
+        }
+        
+        if (response.ok) {
+            form.reset();
+            const otpCont = document.getElementById('otp-container');
+            if(form.id === 'admissionForm' && otpCont) {
+                otpCont.classList.add('hidden');
+            }
+        }
+    } catch (error) {
+        showNotice("Connection error. Please try again later.");
+    }
+}
+
+async function sendAdmissionOTP() {
+    const phone = document.getElementById('admission_phone').value;
+
+    if (!phone) {
+        showNotice("Please enter your phone number first.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('phone', phone);
+
+    try {
+        const response = await fetch('/send-otp', { method: 'POST', body: formData });
+        const result = await response.json();
+        showNotice(result.notification);
+        
+        if (response.ok) {
+            document.getElementById('otp-container').classList.remove('hidden');
+        }
+    } catch (error) {
+        showNotice("Failed to request OTP. Check connection.");
+    }
+}
+
+document.getElementById('admissionForm').addEventListener('submit', (e) => handleAjaxSubmit(e, '/addmissioninput'));
+document.getElementById('feedbackForm').addEventListener('submit', (e) => handleAjaxSubmit(e, '/feedbackinput'));
+// student life scroll story animation end
+</script>
+</body>
+</html>

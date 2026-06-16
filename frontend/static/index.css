@@ -1,0 +1,577 @@
+/* ==========================================================================
+   RESET & VARIABLES
+   ========================================================================== */
+:root {
+    --primary-color: #b38b4d;     /* Elegant Academic Gold */
+    --primary-hover: #96733b;
+    --text-light: #ffffff;
+    --text-muted: #e2e8f0;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: #0f172a;    /* Rich Dark Slate Background */
+    color: var(--text-light);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   HERO CONTAINER
+   ========================================================================== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Let margin-top: auto handle the vertical push */
+    align-items: flex-start; /* Ensures content strictly stays at the left corner */
+    background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 2rem 5%;
+}
+
+/* ==========================================================================
+   HERO OVERLAY
+   ========================================================================== */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darkens the image to make white text pop */
+    z-index: 1;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* ==========================================================================
+   HEADER & LEFT-ALIGNED LOGO AREA
+   ========================================================================== */
+.header {
+    position: sticky;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    top : 0px;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between; /* Pushes hamburger menu button to the far right */
+    align-items: center;
+    width: 100%;
+}
+
+/* Combines logo and school name tightly on the left */
+.logo-area {
+    display: flex;
+  
+    align-items: center;
+    gap: 15px; /* Adjust this spacing to bring text closer or farther from logo */
+}
+
+/* Circular Logo Styling */
+.school-logo{
+    width: 65px;         /* Forces identical width & height for absolute symmetry */
+    height: 65px; 
+      z-index: 100;  
+    border-radius: 50%;  /* Clips image into a perfect circle */
+    overflow: hidden;   /* Ensures any overflow from the image is hidden */
+}
+.school-logo img {
+    width: 65px;         /* Forces identical width & height for absolute symmetry */
+    height: 65px;
+      z-index: 100;
+    border-radius: 50%;  /* Clips image into a perfect circle */
+    object-fit: cover;   /* Prevents stretching/distortion */
+    border: 2px solid var(--primary-color);
+}
+
+.school-title h2 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    margin: 0;
+      z-index: 100;
+}
+
+.school-title p {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+    margin: 3px 0 0 0;
+      z-index: 100;
+}
+
+/* ==========================================================================
+   HERO MAIN CONTENT
+   ========================================================================== */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin-top: auto; /* Pushes the text block to the bottom of the section */
+    margin-bottom: 2rem;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns children (H1, P, Buttons) to the left */
+    text-align: left; /* Aligns the text content to the left */
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.hero-content p {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin-bottom: 2.5rem;
+}
+
+/* ==========================================================================
+   INTERACTIVE BUTTONS
+   ========================================================================== */
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-start; /* Ensure buttons start from the left */
+}
+
+.btn-solid, .btn-outline {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    text-align: left;
+    transition: var(--transition-smooth);
+}
+
+.btn-solid {
+    background-color: var(--primary-color);
+    color: #0f172a;
+}
+
+.btn-solid:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(179, 139, 77, 0.2);
+}
+
+.btn-outline {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: #0f172a;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   MOBILE NAVIGATION MENU BUTTON (HAMBURGER)
+   ========================================================================== */
+.menu-btn {
+    display: none; /* Hidden by default on Desktop */
+    flex-direction: column;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-btn span {
+    width: 28px;
+    height: 2px;
+    background-color: var(--text-light);
+    transition: var(--transition-smooth);
+}
+
+/* Burger to X Animation */
+.menu-btn.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-btn.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   NAVIGATION (Desktop Default)
+   ========================================================================== */
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+    z-index: 1000;
+    padding: 10px 35px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-close-container {
+    display: none; /* Only visible in mobile drawer */
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+/* Elegant Gold Underline Hover Effect for Desktop */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition-smooth);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   MOBILE/TABLET NAVIGATION DRAWER
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .menu-btn {
+        display: flex;
+        z-index: 10001; /* Ensure hamburger stays above drawer */
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 320px;
+        height: 100vh;
+        background-color: rgba(15, 23, 42, 0.756);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 4rem;
+        gap: 2.5rem;
+        transform: translateX(100%);
+        border-left: 1px solid rgba(179, 139, 77, 0.3);
+        border-radius: 0;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10000;
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+
+
+
+
+    .nav-links a {
+        font-size: 1.3rem;
+    }
+
+    .nav-links a::after {
+        display: none; /* Underline effect disabled in vertical drawer */
+    }
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE DESIGN)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero {
+        padding: 1.5rem 20px;
+    }
+
+    .school-title h2 {
+        font-size: 1.2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        background-color: rgba(15, 23, 42, 0.756);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        width: 100%; /* Full screen menu on mobile */
+    }
+    .header{
+        z-index: 10; /* Ensures the header (with logo and hamburger) is above the nav menu */
+        background: #0f172aaa;
+        backdrop-filter: blur(20px);
+    }
+}
+
+@media (max-width: 480px) {
+        .nav-links {
+        background-color: rgba(15, 23, 42, 0.756);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        width: 100%; /* Full screen menu on mobile */
+    }
+    .logo-area {
+        gap: 10px;
+    }
+
+    .school-logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .school-title p {
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+    
+    .btn-solid, .btn-outline {
+        text-align: center;
+        width: 100%;
+    }
+    .header{
+        z-index: 10; /* Ensures the header (with logo and hamburger) is above the nav menu */
+        background: #0f172aaa;
+        backdrop-filter: blur(20px);
+    }
+}
+/* ====================================== 
+        STUDENT LIFE SECTION
+============================================*/
+
+
+.story{
+    position:relative;
+    padding:120px 0 200px;
+    z-index:-10;
+    transition: background 0.5s ease;
+background: linear-gradient(
+    135deg,
+    #be9271 0%,
+    #67a9c7 30%,
+    #c06993 65%,
+    #967bbe 100%
+);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    color: white; /* Optional: text color for contrast */
+}
+
+/* Smooth animated gradient shift */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+.story-title{
+    text-align:center;
+    font-weight:900;
+    font-size:2.9rem;
+    margin-bottom:40px;
+    color:#ffffff;
+    z-index:-10;
+}
+
+.story-path{
+    position:absolute;
+    left:50%;
+    top:270px;
+    width:260px;
+    height:1670px;
+    transform:translateX(-50%);
+    overflow:visible;
+    pointer-events:none;
+    z-index:-10;
+}
+
+.arrow{
+    position:absolute;
+    width:90px;
+    height:90px;
+    background:#11111100;
+    color:#008080;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:90px;
+    z-index:20;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.item{
+    height:380px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.content{
+   width:min(340px,30vw);
+    background:transparent;
+    border-radius:18px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    padding:25px;box-shadow:0 15px 40px rgba(0,0,0,.12);
+    position:absolute;
+}
+
+.image{
+    width:min(480px,40vw);
+    height:234px;
+    background:linear-gradient(135deg,#cfcfcf,#a8a8a8);
+    border-radius:18px;
+    position:absolute;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+.left .content{
+    left:8%;
+}
+
+.left .image{
+    right:12%;
+}
+
+.right .content{
+    right:8%;
+}
+
+.right .image{
+    left:12%;
+}
+
+.content h2{
+    margin-bottom:12px;
+    color: #0F766E;   /* Deep Teal */  
+      align-items:center;
+    font-weight:600;
+}
+.content p{
+    line-height:1.6;
+color: #374151;   /* Dark Slate Gray */}
+
+.footer-logo{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#222;
+    margin:120px auto 0;
+}
+
+@media(max-width:900px){
+    .story-path, .arrow {
+        display: none !important;
+    }
+    .item{
+        height: 600px;
+        padding: 80px 20px;
+        display:block;
+        overflow: hidden;
+    }
+    .content,.image{
+        position:relative!important;
+        left:auto!important;
+        right:auto!important;
+        width: 90% !important;
+        max-width: 340px !important;
+        margin: 0 auto 40px auto !important;
+    }
+}
+/* =====================================================
+                STUDENT LIFE SECTION END and below sections start below
+=========================================================*/
+ ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+        /* Curve path helper animations with gentle dash flows */
+        .scrolling-path-dash {
+            stroke-dasharray: 8;
+            animation: dash 35s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }

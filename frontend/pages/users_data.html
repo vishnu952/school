@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | User Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-slate-50 min-h-screen p-6 sm:p-12">
+    <div class="max-w-6xl mx-auto">
+        <header class="flex justify-between items-center mb-10">
+            <div>
+                <h1 class="text-3xl font-extrabold text-slate-900">Admin Dashboard</h1>
+                <h2 class="text-xl font-semibold text-slate-700">Srividyaranya Gurukulam</h2>
+                <p>── School of Excellence <i class="fa-solid fa-graduation-cap text-sm"> ──</i></p>
+            </div>
+            <a href="/" class="text-sm font-semibold text-slate-600 hover:text-slate-900"><i class="fa-solid fa-house mr-1"></i> Back to Site</a>
+        </header>
+
+        <!-- TAB NAVIGATION -->
+        <div class="flex flex-wrap gap-2 mb-8 bg-white p-1.5 rounded-xl shadow-sm border border-slate-200 w-fit">
+            <button onclick="switchTab('admissions')" id="btn-admissions" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all bg-blue-600 text-white shadow-md">Admissions</button>
+            <button onclick="switchTab('contacts')" id="btn-contacts" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">Contacts</button>
+            <button onclick="switchTab('feedbacks')" id="btn-feedbacks" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">Feedback</button>
+            <button onclick="switchTab('gallery-edit')" id="btn-gallery-edit" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">Gallery</button>
+            <button onclick="switchTab('student-life')" id="btn-student-life" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">Student Life</button>
+            <button onclick="switchTab('home-video')" id="btn-home-video" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">HOME video</button>
+            <button onclick="switchTab('analytics')" id="btn-analytics" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">Analytics</button>
+        </div>
+
+        <!-- ADMISSIONS DATA -->
+        <section id="section-admissions" class="tab-content block animate-in fade-in duration-500">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center"><i class="fa-solid fa-user-graduate text-xs"></i></div>
+                <h2 class="text-xl font-bold text-slate-800 flex-grow">Admissions Queue</h2>
+                <div class="relative w-64">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </span>
+                    <input type="text" id="admissionSearch" onkeyup="filterTable('admissionTable', 'admissionSearch')" placeholder="Search names..." class="w-full pl-9 pr-4 py-1.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <table class="w-full text-left border-collapse" id="admissionTable">
+                    <thead class="bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase cursor-pointer hover:text-blue-600 transition-colors" onclick="sortTable('admissionTable', 0)">Student Name <i class="fa-solid fa-sort ml-1"></i></th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase">Parent Email</th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase">Phone</th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase">Address</th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        {% for item in admissions %}
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 text-sm font-semibold text-slate-900">{{ item.name }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ item.email }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ item.phone }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ item.address }}</td>
+                            <td class="px-6 py-4 text-right">
+                                <form action="/admission-delete/{{ item._id }}" method="POST" onsubmit="return confirm('Delete this record?')">
+                                    <button type="submit" class="text-red-500 hover:text-red-700 transition-colors"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CONTACT DATA -->
+        <section id="section-contacts" class="tab-content hidden animate-in fade-in duration-500">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-green-600 text-white flex items-center justify-center"><i class="fa-solid fa-envelope text-xs"></i></div>
+                <h2 class="text-xl font-bold text-slate-800 flex-grow">Contact Requests</h2>
+                <div class="relative w-64">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </span>
+                    <input type="text" id="contactSearch" onkeyup="filterTable('contactTable', 'contactSearch')" placeholder="Search names..." class="w-full pl-9 pr-4 py-1.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <table class="w-full text-left border-collapse" id="contactTable">
+                    <thead class="bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase cursor-pointer hover:text-green-600 transition-colors" onclick="sortTable('contactTable', 0)">Name <i class="fa-solid fa-sort ml-1"></i></th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase">Email</th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase">Message</th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        {% for item in contacts %}
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 text-sm font-semibold text-slate-900">{{ item.name }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ item.email }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ item.message }}</td>
+                            <td class="px-6 py-4 text-right">
+                                <form action="/contact-delete/{{ item._id }}" method="POST" onsubmit="return confirm('Delete this record?')">
+                                    <button type="submit" class="text-red-500 hover:text-red-700 transition-colors"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FEEDBACK DATA -->
+        <section id="section-feedbacks" class="tab-content hidden animate-in fade-in duration-500">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-purple-600 text-white flex items-center justify-center"><i class="fa-solid fa-comment-dots text-xs"></i></div>
+                <h2 class="text-xl font-bold text-slate-800 flex-grow">Public Feedback</h2>
+                <div class="relative w-64">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </span>
+                    <input type="text" id="feedbackSearch" onkeyup="filterTable('feedbackTable', 'feedbackSearch')" placeholder="Search names..." class="w-full pl-9 pr-4 py-1.5 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <table class="w-full text-left border-collapse" id="feedbackTable">
+                    <thead class="bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase cursor-pointer hover:text-purple-600 transition-colors" onclick="sortTable('feedbackTable', 0)">Name <i class="fa-solid fa-sort ml-1"></i></th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase">Feedback Message</th>
+                            <th class="px-6 py-3 text-xs font-bold text-slate-500 uppercase text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        {% for item in feedbacks %}
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 text-sm font-semibold text-slate-900">{{ item.name }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ item.message }}</td>
+                            <td class="px-6 py-4 text-right">
+                                <form action="/feedback-delete/{{ item._id }}" method="POST" onsubmit="return confirm('Delete this record?')">
+                                    <button type="submit" class="text-red-500 hover:text-red-700 transition-colors"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- GALLERY MANAGEMENT -->
+        <section id="section-gallery-edit" class="tab-content hidden animate-in fade-in duration-500">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-amber-500 text-slate-900 flex items-center justify-center"><i class="fa-solid fa-camera-retro text-xs"></i></div>
+                <h2 id="gallery-form-title" class="text-xl font-bold text-slate-800">Add Gallery Photos</h2>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 mb-8">
+                <form action="/gallery-upload" method="POST" enctype="multipart/form-data" class="grid md:grid-cols-2 gap-6">
+                    <input type="hidden" name="edit_id" id="edit_id">
+                    <div class="md:col-span-1">
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Occasion Name</label>
+                        <input type="text" name="occasion" required placeholder="Event title..." 
+                               class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Date</label>
+                        <input type="date" name="date" required 
+                               class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Photo File</label>
+                        <input type="file" name="photo" id="photo_input" accept="image/*" required 
+                               class="w-full px-4 py-2 border border-slate-200 rounded-lg file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100">
+                    </div>
+                    <button type="submit" id="gallery-submit-btn" class="md:col-span-1 py-3 bg-amber-500 text-slate-900 font-bold rounded-xl hover:bg-amber-400 transition-all shadow-lg">
+                        Publish Photo
+                    </button>
+                    <button type="button" id="cancel-edit-btn" onclick="resetGalleryForm()" class="hidden md:col-span-1 py-3 bg-slate-100 text-slate-600 font-bold rounded-xl hover:bg-slate-200 transition-all">
+                        Cancel Edit
+                    </button>
+                </form>
+            </div>
+
+            <!-- CURRENT GALLERY PREVIEW -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {% for item in gallery_items %}
+                <div class="bg-white p-2 rounded-xl border border-slate-200 shadow-sm">
+                    <img src="{{ item.image_url }}" class="w-full h-32 object-cover rounded-lg mb-2">
+                    <p class="text-xs font-bold text-slate-800 truncate">{{ item.occasion }}</p>
+                    <p class="text-[10px] text-slate-400">{{ item.date }}</p>
+                    <div class="flex gap-2 mt-3 pt-2 border-t border-slate-100">
+                        <button onclick="editGallery('{{ item._id }}', '{{ item.occasion }}', '{{ item.date }}')" class="flex-1 py-1.5 text-[10px] font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded transition-colors">EDIT</button>
+                        <form action="/gallery-delete/{{ item._id }}" method="POST" class="flex-1" onsubmit="return confirm('Delete this photo permanently?')">
+                            <button type="submit" class="w-full py-1.5 text-[10px] font-bold bg-red-50 hover:bg-red-100 text-red-600 rounded transition-colors">DELETE</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- STUDENT LIFE MANAGEMENT -->
+        <section id="section-student-life" class="tab-content hidden animate-in fade-in duration-500">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center"><i class="fa-solid fa-shapes text-xs"></i></div>
+                <h2 class="text-xl font-bold text-slate-800">Student Life Section Images</h2>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <form action="/student-life-upload" method="POST" enctype="multipart/form-data" class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <label class="block text-xs font-bold uppercase text-slate-500">Academic Excellence Image</label>
+                        <input type="file" name="academic" accept="image/*" class="w-full text-xs">
+                        {% if student_life.academic_img %}<img src="{{ student_life.academic_img }}" class="h-20 rounded border">{% endif %}
+                    </div>
+                    <div class="space-y-4">
+                        <label class="block text-xs font-bold uppercase text-slate-500">Sports Excellence Image</label>
+                        <input type="file" name="sports" accept="image/*" class="w-full text-xs">
+                        {% if student_life.sports_img %}<img src="{{ student_life.sports_img }}" class="h-20 rounded border">{% endif %}
+                    </div>
+                    <div class="space-y-4">
+                        <label class="block text-xs font-bold uppercase text-slate-500">Arts & Creativity Image</label>
+                        <input type="file" name="arts" accept="image/*" class="w-full text-xs">
+                        {% if student_life.arts_img %}<img src="{{ student_life.arts_img }}" class="h-20 rounded border">{% endif %}
+                    </div>
+                    <div class="space-y-4">
+                        <label class="block text-xs font-bold uppercase text-slate-500">Digital Learning Image</label>
+                        <input type="file" name="digital" accept="image/*" class="w-full text-xs">
+                        {% if student_life.digital_img %}<img src="{{ student_life.digital_img }}" class="h-20 rounded border">{% endif %}
+                    </div>
+                    <button type="submit" class="md:col-span-2 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-all shadow-lg">
+                        Update Student Life Images
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- HOME VIDEO MANAGEMENT -->
+        <section id="section-home-video" class="tab-content hidden animate-in fade-in duration-500">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-rose-600 text-white flex items-center justify-center"><i class="fa-solid fa-video text-xs"></i></div>
+                <h2 class="text-xl font-bold text-slate-800">Hero Section Background Video</h2>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <form action="/home-video-upload" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Upload New Video (MP4 recommended)</label>
+                        <input type="file" name="video" accept="video/*" class="w-full text-xs">
+                    </div>
+                    
+                    {% if home_video.video_url %}
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase text-slate-500">Current Background Video:</label>
+                        <video controls class="max-w-md rounded-xl border border-slate-200 shadow-sm">
+                            <source src="{{ home_video.video_url }}" type="video/mp4">
+                        </video>
+                    </div>
+                    {% endif %}
+
+                    <button type="submit" class="w-full py-3 bg-rose-600 text-white font-bold rounded-xl hover:bg-rose-700 transition-all shadow-lg">
+                        Update Home Video
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- VISITOR ANALYTICS -->
+        <section id="section-analytics" class="tab-content hidden animate-in fade-in duration-500">
+            <div class="flex items-center gap-2 mb-6">
+                <div class="w-8 h-8 rounded-lg bg-teal-600 text-white flex items-center justify-center"><i class="fa-solid fa-chart-line text-xs"></i></div>
+                <h2 class="text-xl font-bold text-slate-800">Visitor Analytics</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+                    <p class="text-xs font-bold text-slate-400 uppercase mb-1">Last 24 Hours</p>
+                    <h3 class="text-3xl font-extrabold text-teal-600">{{ visitor_stats.last_24h }}</h3>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+                    <p class="text-xs font-bold text-slate-400 uppercase mb-1">Last Week</p>
+                    <h3 class="text-3xl font-extrabold text-teal-600">{{ visitor_stats.last_week }}</h3>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+                    <p class="text-xs font-bold text-slate-400 uppercase mb-1">Last Month</p>
+                    <h3 class="text-3xl font-extrabold text-teal-600">{{ visitor_stats.last_month }}</h3>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center">
+                    <p class="text-xs font-bold text-slate-400 uppercase mb-1">Last Year</p>
+                    <h3 class="text-3xl font-extrabold text-teal-600">{{ visitor_stats.last_year }}</h3>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm text-center bg-teal-50 border-teal-100">
+                    <p class="text-xs font-bold text-teal-600 uppercase mb-1">Total Visits</p>
+                    <h3 class="text-3xl font-extrabold text-teal-700">{{ visitor_stats.total }}</h3>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.tab-content').forEach(section => {
+                section.classList.replace('block', 'hidden');
+            });
+
+            // Show selected section
+            document.getElementById('section-' + tabId).classList.replace('hidden', 'block');
+
+            // Update button styles
+            const buttons = {
+                'admissions': { id: 'btn-admissions', color: 'bg-blue-600' },
+                'contacts': { id: 'btn-contacts', color: 'bg-green-600' },
+                'feedbacks': { id: 'btn-feedbacks', color: 'bg-purple-600' },
+                'gallery-edit': { id: 'btn-gallery-edit', color: 'bg-amber-500' },
+                'student-life': { id: 'btn-student-life', color: 'bg-indigo-600' },
+                'home-video': { id: 'btn-home-video', color: 'bg-rose-600' },
+                'analytics': { id: 'btn-analytics', color: 'bg-teal-600' }
+            };
+
+            Object.keys(buttons).forEach(key => {
+                const btn = document.getElementById(buttons[key].id);
+                if (key === tabId) {
+                    btn.className = (key === 'gallery-edit') ? `px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${buttons[key].color} text-slate-900 shadow-md` : `px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${buttons[key].color} text-white shadow-md`;
+                } else {
+                    btn.className = "px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50";
+                }
+            });
+        }
+
+        function editGallery(id, occasion, date) {
+            document.getElementById('edit_id').value = id;
+            document.getElementsByName('occasion')[0].value = occasion;
+            document.getElementsByName('date')[0].value = date;
+            document.getElementById('gallery-form-title').innerText = "Update Gallery Photo";
+            document.getElementById('gallery-submit-btn').innerText = "Update Changes";
+            document.getElementById('photo_input').required = false;
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetGalleryForm() {
+            document.getElementById('edit_id').value = "";
+            document.getElementById('gallery-form-title').innerText = "Add Gallery Photos";
+            document.getElementById('gallery-submit-btn').innerText = "Publish Photo";
+            document.getElementById('photo_input').required = true;
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+        }
+
+        function filterTable(tableId, inputId) {
+            const input = document.getElementById(inputId);
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById(tableId);
+            const tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    tr[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+                }
+            }
+        }
+
+        function sortTable(tableId, n) {
+            let table = document.getElementById(tableId);
+            let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+</html>
