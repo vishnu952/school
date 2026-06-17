@@ -62,6 +62,7 @@ gal = db.get_collection("gallery")
 sl = db.get_collection("student_life")
 hv = db.get_collection("home_video")
 vis = db.get_collection("visitors")
+pm = db.get_collection("principal_message")
 
 try:
     # Attempt to verify the connection and check for existing DB
@@ -185,6 +186,7 @@ async def admin_dashboard(request: Request):
         
         student_life = sl.find_one({"type": "student_life"}) or {}
         home_video = hv.find_one({"type": "home_video"}) or {}
+        principal = pm.find_one({"type": "principal"}) or {}
         
         # Visitor Analytics Calculation
         now = datetime.utcnow()
@@ -206,7 +208,8 @@ async def admin_dashboard(request: Request):
                 "gallery_items": gallery_items,
                 "student_life": student_life,
                 "home_video": home_video,
-                "visitor_stats": visitor_stats
+                "visitor_stats": visitor_stats,
+                "principal": principal
             }
         )
 
@@ -295,6 +298,39 @@ async def home_video_upload(
         )
     return RedirectResponse(url="/users_data", status_code=303)
 
+@app.post("/principal-message-upload")
+async def principal_message_upload(
+    request: Request,
+    name: str = Form(None),
+    designation: str = Form(None),
+    message: str = Form(None),
+    image: UploadFile = File(None)
+):
+    if not request.session.get("is_admin"):
+        return RedirectResponse(url="/ADMIN")
+    
+    update_data = {
+        "name": name,
+        "designation": designation,
+        "message": message
+    }
+
+    if image and image.filename:
+        upload_dir = BASE_DIR / "frontend" / "static" / "images"
+        upload_dir.mkdir(parents=True, exist_ok=True)
+        
+        file_path = upload_dir / image.filename
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(image.file, buffer)
+        update_data["image_url"] = f"/static/images/{image.filename}"
+            
+    pm.update_one(
+        {"type": "principal"},
+        {"$set": update_data},
+        upsert=True
+    )
+    return RedirectResponse(url="/users_data", status_code=303)
+
 @app.post("/gallery-delete/{photo_id}")
 async def gallery_delete(request: Request, photo_id: str):
     if not request.session.get("is_admin"):
@@ -335,11 +371,12 @@ async def index(request: Request):
     request.session["is_admin"] = False
     student_life = sl.find_one({"type": "student_life"}) or {}
     home_video = hv.find_one({"type": "home_video"}) or {}
+    principal = pm.find_one({"type": "principal"}) or {}
 
     return template.TemplateResponse(
         request=request,
         name="index.html",
-        context={"request": request, "student_life": student_life, "home_video": home_video}
+        context={"request": request, "student_life": student_life, "home_video": home_video, "principal": principal}
     )
 
 @app.get("/{page_name}")
@@ -354,6 +391,7 @@ async def get_page(request: Request, page_name: str):
     elif page_name == "index.html":
         ctx["student_life"] = sl.find_one({"type": "student_life"}) or {}
         ctx["home_video"] = hv.find_one({"type": "home_video"}) or {}
+        ctx["principal"] = pm.find_one({"type": "principal"}) or {}
 
     return template.TemplateResponse(
         request=request,

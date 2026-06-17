@@ -26,6 +26,7 @@
             <button onclick="switchTab('gallery-edit')" id="btn-gallery-edit" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">Gallery</button>
             <button onclick="switchTab('student-life')" id="btn-student-life" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">Student Life</button>
             <button onclick="switchTab('home-video')" id="btn-home-video" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">HOME video</button>
+            <button onclick="switchTab('principal-message')" id="btn-principal-message" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">Principal Message</button>
             <button onclick="switchTab('analytics')" id="btn-analytics" class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-slate-600 hover:bg-slate-50">Analytics</button>
         </div>
 
@@ -267,6 +268,46 @@
             </div>
         </section>
 
+        <!-- PRINCIPAL MESSAGE MANAGEMENT -->
+        <section id="section-principal-message" class="tab-content hidden animate-in fade-in duration-500">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-orange-600 text-white flex items-center justify-center"><i class="fa-solid fa-user-tie text-xs"></i></div>
+                <h2 class="text-xl font-bold text-slate-800">Principal's Message Management</h2>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <form action="/principal-message-upload" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Principal Name</label>
+                            <input type="text" name="name" value="{{ principal.name or '' }}" placeholder="e.g. Dr. Elizabeth Vance" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-600 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Designation</label>
+                            <input type="text" name="designation" value="{{ principal.designation or '' }}" placeholder="e.g. Campus Principal" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-600 outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Principal's Message</label>
+                        <textarea name="message" rows="4" placeholder="Enter the principal's address..." class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-orange-600 outline-none">{{ principal.message or '' }}</textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Principal Image</label>
+                        <input type="file" name="image" accept="image/*" class="w-full text-xs">
+                        {% if principal.image_url %}
+                        <div class="mt-2">
+                            <p class="text-[10px] text-slate-400 mb-1">Current Image:</p>
+                            <img src="{{ principal.image_url }}" class="h-24 rounded border shadow-sm">
+                        </div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-all shadow-lg">
+                        Update Principal Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
         <!-- VISITOR ANALYTICS -->
         <section id="section-analytics" class="tab-content hidden animate-in fade-in duration-500">
             <div class="flex items-center gap-2 mb-6">
@@ -317,6 +358,7 @@
                 'gallery-edit': { id: 'btn-gallery-edit', color: 'bg-amber-500' },
                 'student-life': { id: 'btn-student-life', color: 'bg-indigo-600' },
                 'home-video': { id: 'btn-home-video', color: 'bg-rose-600' },
+                'principal-message': { id: 'btn-principal-message', color: 'bg-orange-600' },
                 'analytics': { id: 'btn-analytics', color: 'bg-teal-600' }
             };
 

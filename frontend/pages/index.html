@@ -291,17 +291,17 @@ stroke-linejoin="round"/>
                             <span class="px-2.5 py-1 rounded bg-brand-50 text-brand-600 font-bold text-[9px] uppercase tracking-wider">Leadership Message</span>
                             <h3 class="font-syne text-xl sm:text-2xl font-extrabold text-slate-950">Principal's Address</h3>
                             <p class="text-slate-600 text-xs sm:text-sm italic leading-relaxed">
-                                "Welcome to our close-knit academic home. We design our classroom routines to ensure text study is paired closely with athletics, physical testing, and ethical leadership development. We prepare young minds for real global challenges."
+                                "{{ principal.message or 'Welcome to our close-knit academic home. We design our classroom routines to ensure text study is paired closely with athletics, physical testing, and ethical leadership development.' }}"
                             </p>
                             <div>
-                                <h5 class="text-xs font-bold text-slate-900">Dr. Elizabeth Vance, Ph.D.</h5>
-                                <p class="text-slate-400 text-[9px] font-semibold uppercase tracking-wider">Campus Principal & Chairwoman</p>
+                                <h5 class="text-xs font-bold text-slate-900">{{ principal.name or 'Dr. Elizabeth Vance, Ph.D.' }}</h5>
+                                <p class="text-slate-400 text-[9px] font-semibold uppercase tracking-wider">{{ principal.designation or 'Campus Principal & Chairwoman' }}</p>
                             </div>
                         </div>
                         <div class="md:col-span-4 flex justify-center">
                             <div class="relative w-32 h-40 bg-slate-100 rounded-2xl overflow-hidden border border-slate-200 p-1">
-                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" 
-                                     alt="Dr. Elizabeth Vance Portrait" 
+                                <img src="{{ principal.image_url or 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80' }}" 
+                                     alt="{{ principal.name or 'Principal' }} Portrait" 
                                      class="w-full h-full object-cover rounded-xl"
                                      onerror="this.src='https://placehold.co/300x400/e2e8f0/1e293b?text=Principal'">
                             </div>
